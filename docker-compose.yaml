@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  auctionsDB:
+    image: mongo
+    container_name: auctionsDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - auctionsDB_data:/data/db
+
+volumes:
+  auctionsDB_data:
