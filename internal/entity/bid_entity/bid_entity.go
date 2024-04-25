@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/infra/internal_error"
 )
 
@@ -13,6 +14,37 @@ type Bid struct {
 	AuctionId string
 	Amount    float64
 	Timestamp time.Time
+}
+
+func CreateBid(userId, auctionId string, amount float64) (*Bid, *internal_error.InternalError) {
+	bid := &Bid{
+		BidId:     uuid.New().String(),
+		UserId:    userId,
+		AuctionId: auctionId,
+		Amount:    amount,
+		Timestamp: time.Now(),
+	}
+	if err := bid.Validate(); err != nil {
+		return nil, err
+	}
+	return bid, nil
+
+}
+
+func (b *Bid) Validate() *internal_error.InternalError {
+	if err := uuid.Validate(b.UserId); err != nil {
+		return internal_error.NewBadRequestError("UserId is not a valid id")
+	}
+	if err := uuid.Validate(b.UserId); err != nil {
+		return internal_error.NewBadRequestError("UserId is not a valid id")
+	}
+	if err := uuid.Validate(b.AuctionId); err != nil {
+		return internal_error.NewBadRequestError("AuctionId is not a valid id")
+	}
+	if b.Amount <= 0 {
+		return internal_error.NewBadRequestError("Amount is not a valid value")
+	}
+	return nil
 }
 
 type BidEntityRepositoryInterface interface {
