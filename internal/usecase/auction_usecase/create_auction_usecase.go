@@ -1,0 +1,49 @@
+package auction_usecase
+
+import (
+	"context"
+	"time"
+
+	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/entity/auction_entity"
+	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/internal_error"
+)
+
+type ProductCondition int64
+type AuctionStatus int64
+
+type AuctionInputDTO struct {
+	ProductName string           `json:"product_name"`
+	Category    string           `json:"category"`
+	Description string           `json:"description"`
+	Condition   ProductCondition `json:"condition"`
+}
+
+type AuctionOutputDTO struct {
+	AuctionId   string           `json:"auction_id"`
+	ProductName string           `json:"product_name"`
+	Category    string           `json:"category"`
+	Description string           `json:"description"`
+	Condition   ProductCondition `json:"condition"`
+	Status      AuctionStatus    `json:"status"`
+	Timestamp   time.Time        `json:"timestamp" time_format:"2006-01-02 15:04:05"`
+}
+
+type AuctionUseCase struct {
+	auctionRepositoryInterface auction_entity.AuctionRepositoryInterface
+}
+
+func (au *AuctionUseCase) CreateAuction(ctx context.Context, auctionInputDTO AuctionInputDTO) *internal_error.InternalError {
+	auction, err := auction_entity.CreateAuction(
+		auctionInputDTO.ProductName,
+		auctionInputDTO.Category,
+		auctionInputDTO.Description,
+		auction_entity.ProductCondition(auctionInputDTO.Condition),
+	)
+	if err != nil {
+		return err
+	}
+	if err := au.auctionRepositoryInterface.CreateAuction(ctx, *auction); err != nil {
+		return err
+	}
+	return nil
+}
