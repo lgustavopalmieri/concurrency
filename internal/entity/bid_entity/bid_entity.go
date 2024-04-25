@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/internal_error"
+	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/infra/internal_error"
 )
 
 type Bid struct {

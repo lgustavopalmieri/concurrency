@@ -5,7 +5,7 @@ import (
 
 	"github.com/lgustavopalmieri/labs-go-expert-auctiont/configuration/logger"
 	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/entity/auction_entity"
-	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/internal_error"
+	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/infra/internal_error"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

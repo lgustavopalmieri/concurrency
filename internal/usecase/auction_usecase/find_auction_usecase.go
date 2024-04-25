@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/entity/auction_entity"
-	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/internal_error"
+	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/infra/internal_error"
 )
 
 func (au *AuctionUseCase) FindAuctionById(ctx context.Context, id string) (*AuctionOutputDTO, *internal_error.InternalError) {

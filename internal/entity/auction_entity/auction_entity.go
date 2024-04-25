@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/internal_error"
+	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/infra/internal_error"
 )
 
 func CreateAuction(productName, category, description string, condition ProductCondition) (*Auction, *internal_error.InternalError) {

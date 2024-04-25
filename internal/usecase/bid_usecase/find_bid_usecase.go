@@ -3,7 +3,7 @@ package bid_usecase
 import (
 	"context"
 
-	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/internal_error"
+	"github.com/lgustavopalmieri/labs-go-expert-auctiont/internal/infra/internal_error"
 )
 
 func (bu *BidUseCase) FindBidByAuctionId(ctx context.Context, auctionId string) ([]BidOutputDTO, *internal_error.InternalError) {
