@@ -5,3 +5,6 @@ go get go.uber.org/zap
 go get go.mongodb.org/mongo-driver/mongo
 
 docker container run -d -p 27017:27017 --name auctionsDB mongo
+
+go get github.com/go-playground/validator/v10
+go get github.com/go-playground/universal-translator
